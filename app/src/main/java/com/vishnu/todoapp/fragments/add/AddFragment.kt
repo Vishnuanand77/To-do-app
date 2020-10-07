@@ -14,6 +14,7 @@ import com.vishnu.todoapp.data.models.ToDoData
 import com.vishnu.todoapp.data.viewmodel.ToDoViewModel
 import com.vishnu.todoapp.fragments.SharedViewModel
 import kotlinx.android.synthetic.main.fragment_add.*
+import kotlinx.android.synthetic.main.fragment_add.view.*
 
 class AddFragment : Fragment() {
 
@@ -30,6 +31,9 @@ class AddFragment : Fragment() {
 
         //set menu
         setHasOptionsMenu(true)
+
+        //Setting colours for priority spinner
+        view.spinner.onItemSelectedListener = mSharedViewModel.listener
 
         return view
     }
