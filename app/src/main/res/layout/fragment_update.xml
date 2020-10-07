@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="24dp"
+    android:padding="18dp"
     tools:context=".fragments.update.UpdateFragment">
 
     <EditText
         android:id="@+id/Update_title_et"
         android:layout_width="0dp"
         android:layout_height="51dp"
-        android:layout_marginTop="50dp"
+
         android:background="@drawable/custom_input"
         android:ems="10"
         android:hint="@string/task_title"
@@ -27,7 +27,7 @@
     <EditText
         android:id="@+id/Update_description_et"
         android:layout_width="0dp"
-        android:layout_height="438dp"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/custom_input"
         android:ems="10"
@@ -48,7 +48,7 @@
         android:id="@+id/Update_spinner"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/custom_input"
         android:entries="@array/priorities"
         android:paddingTop="10dp"

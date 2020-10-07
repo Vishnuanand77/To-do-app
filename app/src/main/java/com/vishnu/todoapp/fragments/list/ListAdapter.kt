@@ -31,7 +31,8 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
         holder.itemView.description_txt.text = dataList[position].description
 
         holder.itemView.row_background.setOnClickListener{ //OnClickListener for the card
-            holder.itemView.findNavController().navigate(R.id.action_listFragment_to_updateFragment)
+            val action = ListFragmentDirections.actionListFragmentToUpdateFragment(dataList[position])
+            holder.itemView.findNavController().navigate(action)
         }
 
         when (dataList[position].priority) {
