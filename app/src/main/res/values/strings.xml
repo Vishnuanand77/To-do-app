@@ -4,7 +4,12 @@
     <string name="no_data">No data!</string>
     <string name="task_title">Task title</string>
     <string name="description">Description</string>
-    
+    <string name="search">Search</string>
+    <string name="sort_by">Sort By</string>
+    <string name="high_priority">High Priority</string>
+    <string name="priority_low">Low Priority</string>
+    <string name="delete_all">Delete All</string>
+
     <string-array name="priorities">
         <item>High priority</item>
         <item>Medium priority</item>
