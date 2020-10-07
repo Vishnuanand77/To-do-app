@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.vishnu.todoapp.data.models.ToDoData
 
 @Dao //Data access object
 interface ToDoDAO {

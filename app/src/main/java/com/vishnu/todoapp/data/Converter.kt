@@ -1,6 +1,7 @@
 package com.vishnu.todoapp.data
 
 import androidx.room.TypeConverter
+import com.vishnu.todoapp.data.models.Priority
 
 class Converter {
 
@@ -10,7 +11,7 @@ class Converter {
     }
 
     @TypeConverter
-    fun toPriority(priority: String): Priority{ //Converts string to enum
+    fun toPriority(priority: String): Priority { //Converts string to enum
         return Priority.valueOf(priority)
     }
 }

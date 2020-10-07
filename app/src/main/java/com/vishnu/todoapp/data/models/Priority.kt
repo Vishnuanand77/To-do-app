@@ -1,4 +1,4 @@
-package com.vishnu.todoapp.data
+package com.vishnu.todoapp.data.models
 
 enum class Priority {
     HIGH,
