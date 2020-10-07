@@ -39,4 +39,11 @@ class ToDoViewModel(application: Application): AndroidViewModel(application) { /
             repository.deleteItem(toDoData) //Running the delete data function in a background thread
         }
     }
+
+    fun deleteAll() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteAll() //Running the delete data function in a background thread
+        }
+    }
+
 }
