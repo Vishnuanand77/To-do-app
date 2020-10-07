@@ -12,11 +12,13 @@ import com.vishnu.todoapp.R
 import com.vishnu.todoapp.data.models.Priority
 import com.vishnu.todoapp.data.models.ToDoData
 import com.vishnu.todoapp.data.viewmodel.ToDoViewModel
+import com.vishnu.todoapp.fragments.SharedViewModel
 import kotlinx.android.synthetic.main.fragment_add.*
 
 class AddFragment : Fragment() {
 
     private val mtoDoViewModel: ToDoViewModel by viewModels()
+    private val mSharedViewModel: SharedViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,13 +50,13 @@ class AddFragment : Fragment() {
         val mPriority = spinner.selectedItem.toString()
         val mDescription = description_et.text.toString()
 
-        val validation = verifyDataFromUser(mTitle, mDescription)
+        val validation = mSharedViewModel.verifyDataFromUser(mTitle, mDescription)
 
         if(validation){ //Only insert data into database if title and description are not empty
             val newData = ToDoData(
                 0,
                 mTitle,
-                parsePriorityObj(mPriority),
+                mSharedViewModel.parsePriorityObj(mPriority),
                 mDescription
             )
             mtoDoViewModel.insertData(newData)
@@ -66,25 +68,5 @@ class AddFragment : Fragment() {
         }
     }
 
-    private fun verifyDataFromUser(title: String, description: String): Boolean { //Returns false if the fields are empty
-        return if(TextUtils.isEmpty(title) || TextUtils.isEmpty(description)){
-            return false
-        }
-        else !(title.isEmpty() || description.isEmpty())
-    }
 
-    private fun parsePriorityObj(priority: String): Priority {
-        return when(priority) {
-            "High Priority" -> {
-                Priority.HIGH
-            }
-            "Medium Priority" -> {
-                Priority.MEDUIM
-            }
-            "Low Priority" -> {
-                Priority.LOW
-            }
-            else -> Priority.LOW
-        }
-    }
 }

@@ -1,0 +1,31 @@
+package com.vishnu.todoapp.fragments
+
+import android.app.Application
+import android.text.TextUtils
+import androidx.lifecycle.AndroidViewModel
+import com.vishnu.todoapp.data.models.Priority
+
+class SharedViewModel(application: Application): AndroidViewModel(application) {
+
+    fun verifyDataFromUser(title: String, description: String): Boolean { //Returns false if the fields are empty
+        return if(TextUtils.isEmpty(title) || TextUtils.isEmpty(description)){
+            return false
+        }
+        else !(title.isEmpty() || description.isEmpty())
+    }
+
+    fun parsePriorityObj(priority: String): Priority {
+        return when(priority) {
+            "High Priority" -> {
+                Priority.HIGH
+            }
+            "Medium Priority" -> {
+                Priority.MEDUIM
+            }
+            "Low Priority" -> {
+                Priority.LOW
+            }
+            else -> Priority.LOW
+        }
+    }
+}
