@@ -32,7 +32,7 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
         else !(title.isEmpty() || description.isEmpty())
     }
 
-    fun parsePriorityObj(priority: String): Priority {
+    fun parsePriorityObj(priority: String): Priority {//Converts string to Priority enum
         return when(priority) {
             "High priority" -> {
                 Priority.HIGH
@@ -44,6 +44,14 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
                 Priority.LOW
             }
             else -> Priority.LOW
+        }
+    }
+
+    fun parsePrioritytoInt(priority: Priority): Int { //Parses priority and returns integer
+        return when(priority) {
+            Priority.HIGH -> 0
+            Priority.MEDIUM -> 1
+            Priority.LOW -> 2
         }
     }
 }

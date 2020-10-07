@@ -1,10 +1,7 @@
 package com.vishnu.todoapp.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.vishnu.todoapp.data.models.ToDoData
 
 @Dao //Data access object
@@ -16,5 +13,7 @@ interface ToDoDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE) //Conflict strategy tells ROOM what to do when duplicate data is received
     suspend fun insertData(toDoData: ToDoData) //suspend keyword tells the compiler that the function is running in a co-routine
 
+    @Update
+    suspend fun updateData(toDoData: ToDoData)
 
 }

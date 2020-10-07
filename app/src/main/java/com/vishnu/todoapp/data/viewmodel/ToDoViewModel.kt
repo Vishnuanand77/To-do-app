@@ -27,4 +27,10 @@ class ToDoViewModel(application: Application): AndroidViewModel(application) { /
             repository.insertData(toDoData) //Running the insert data function in a background thread
         }
     }
+
+    fun updateData(toDoData: ToDoData) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateData(toDoData) //Running the update data function in a background thread
+        }
+    }
 }
