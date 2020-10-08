@@ -13,6 +13,7 @@ import com.vishnu.todoapp.R
 import com.vishnu.todoapp.data.models.Priority
 import com.vishnu.todoapp.data.models.ToDoData
 import com.vishnu.todoapp.data.viewmodel.ToDoViewModel
+import com.vishnu.todoapp.databinding.FragmentUpdateBinding
 import com.vishnu.todoapp.fragments.SharedViewModel
 import kotlinx.android.synthetic.main.fragment_update.*
 import kotlinx.android.synthetic.main.fragment_update.view.*
@@ -26,24 +27,24 @@ class UpdateFragment : Fragment() {
     private val mSharedViewModel: SharedViewModel by viewModels()
     private val mToDoViewModel: ToDoViewModel by viewModels()
 
+    private var _binding: FragmentUpdateBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_update, container, false)
+        // Data binding
+        _binding = FragmentUpdateBinding.inflate(inflater, container, false)
+        binding.args = args
 
         //Set menu
         setHasOptionsMenu(true)
 
-        view.Update_title_et.setText(args.currentItem.title)
-        view.Update_description_et.setText(args.currentItem.description)
-        view.Update_spinner.setSelection(mSharedViewModel.parsePrioritytoInt(args.currentItem.priority))
-
         //Change colour of spinner based on priority
-        view.Update_spinner.onItemSelectedListener = mSharedViewModel.listener
+        binding.UpdateSpinner.onItemSelectedListener = mSharedViewModel.listener
 
-        return view
+        return binding.root
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -97,5 +98,10 @@ class UpdateFragment : Fragment() {
         builder.setTitle("Delete '${args.currentItem.title}'?")
         builder.setMessage("Are you sure you want to remove task '${args.currentItem.title}'?")
         builder.create().show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
