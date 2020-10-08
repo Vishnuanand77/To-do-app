@@ -34,10 +34,7 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun verifyDataFromUser(title: String, description: String): Boolean { //Returns false if the fields are empty
-        return if(TextUtils.isEmpty(title) || TextUtils.isEmpty(description)){
-            return false
-        }
-        else !(title.isEmpty() || description.isEmpty())
+        return !(title.isEmpty() || description.isEmpty())
     }
 
     fun parsePriorityObj(priority: String): Priority {//Converts string to Priority enum
