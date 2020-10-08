@@ -1,6 +1,5 @@
 package com.vishnu.todoapp.fragments
 
-import android.renderscript.RenderScript
 import android.view.View
 import android.widget.Spinner
 import androidx.cardview.widget.CardView
@@ -14,7 +13,7 @@ import com.vishnu.todoapp.data.models.Priority
 import com.vishnu.todoapp.data.models.ToDoData
 import com.vishnu.todoapp.fragments.list.ListFragmentDirections
 
-class BindindAdapters {
+class BindingAdapters {
 
     companion object {
 
@@ -61,8 +60,10 @@ class BindindAdapters {
         @BindingAdapter("android:sendDataToUpdateFragment")
         @JvmStatic
         fun sendDataToUpdateFragment(view: ConstraintLayout, currentItem: ToDoData) {
-            val action = ListFragmentDirections.actionListFragmentToUpdateFragment(currentItem)
-            view.findNavController().navigate(action)
+            view.setOnClickListener {
+                val action = ListFragmentDirections.actionListFragmentToUpdateFragment(currentItem)
+                view.findNavController().navigate(action)
+            }
         }
     }
 }
