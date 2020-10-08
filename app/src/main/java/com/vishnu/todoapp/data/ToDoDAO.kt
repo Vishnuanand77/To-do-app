@@ -3,6 +3,7 @@ package com.vishnu.todoapp.data
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.vishnu.todoapp.data.models.ToDoData
+import java.lang.StringBuilder
 
 @Dao //Data access object
 interface ToDoDAO {
@@ -21,4 +22,13 @@ interface ToDoDAO {
 
     @Query("DELETE FROM todo_table")
     suspend fun deleteAll()
+
+    @Query("SELECT * FROM todo_table WHERE title LIKE :searchQuery")
+    fun searchDatabase(searchQuery: String): LiveData<List<ToDoData>>
+
+    @Query("SELECT * FROM todo_table ORDER BY CASE WHEN priority LIKE 'H%' THEN 1 WHEN priority LIKE 'M%' THEN 2 WHEN priority LIKE 'L%' THEN 3 END")
+    fun sortByHighPriority(): LiveData<List<ToDoData>>
+
+    @Query("SELECT * FROM todo_table ORDER BY CASE WHEN priority LIKE 'L%' THEN 1 WHEN priority LIKE 'M%' THEN 2 WHEN priority LIKE 'H%' THEN 3 END")
+    fun sortByLowPriority(): LiveData<List<ToDoData>>
 }

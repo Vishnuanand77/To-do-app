@@ -10,16 +10,21 @@ import com.vishnu.todoapp.data.repository.ToDoRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ToDoViewModel(application: Application): AndroidViewModel(application) { //ViewModel provides data to the UI and acts as a comms center b/w the repo and UI
+class ToDoViewModel(application: Application) :
+    AndroidViewModel(application) { //ViewModel provides data to the UI and acts as a comms center b/w the repo and UI
 
     private val toDoDao = ToDoDatabase.getDatabase(application).toDoDao()
     private val repository: ToDoRepository
 
     val getAllData: LiveData<List<ToDoData>> //Variable that holds the list of data from the repo.
+    val sortByHighPriority: LiveData<List<ToDoData>>
+    val sortByLowPriority: LiveData<List<ToDoData>>
 
     init { //Initializing the view model
         repository = ToDoRepository(toDoDao)
         getAllData = repository.getAllData
+        sortByHighPriority = repository.sortByHighPriority
+        sortByLowPriority = repository.sortByLowPriority
     }
 
     fun insertData(toDoData: ToDoData) {
@@ -45,5 +50,10 @@ class ToDoViewModel(application: Application): AndroidViewModel(application) { /
             repository.deleteAll() //Running the delete data function in a background thread
         }
     }
+
+    fun searchDatabase(searchQuery: String): LiveData<List<ToDoData>> {
+        return repository.searchDatabase(searchQuery)
+    }
+
 
 }
