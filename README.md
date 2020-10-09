@@ -1,5 +1,5 @@
 # To-do-app
-![](ToDoApp.jpg)
+![https://www.linkedin.com/in/vishnu-anand-7925021a0/](ToDoApp.jpg)
 
 A google keep based To-Do app.
 With this project I have explored about using navigation graphs in android applications, using data binding that reduces amount of code written and using safe args.
